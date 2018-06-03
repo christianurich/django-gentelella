@@ -3,6 +3,15 @@ from django.db import models
 
 
 # Create your models here.
+class User(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.CharField(max_length=40)
+
+    def __str__(self):
+        return f"{self.last_name} ({self.email})"
+
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     code = models.CharField(max_length=6)
@@ -10,7 +19,7 @@ class Project(models.Model):
     funding_cat = models.CharField(max_length=30)
     portfolio_owner = models.CharField(max_length=3)
     leader = models.CharField(max_length=50)
-    initiator = models.CharField(max_length=50)
+    initiator = models.ForeignKey(User)
     certainty = models.IntegerField()
     category = models.CharField(max_length=50)
     start_date = models.DateField()
@@ -36,11 +45,3 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.skill
-
-
-class User(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.last_name
