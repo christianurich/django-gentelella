@@ -1,4 +1,4 @@
-## [Gentelella Admin Template](https://github.com/puikinsh/gentelella)
+## [CAPS Scheduling WebApp](https://github.com/puikinsh/gentelella)
 
 #### Steps
 [Optional] [Set up a virtualenv and activate](https://realpython.com/python-virtual-environments-a-primer/)
@@ -20,4 +20,5 @@ Go to http://localhost:8000/
 ###### Contributors 
 [@GiriB](https://github.com/GiriB)  
 [@johnnycakes79](https://github.com/johnnycakes79)
-[@EdMBarry](https://github.com/EdMBarry)
+
+[EdMBarry](https://github.com/EdMBarry)
