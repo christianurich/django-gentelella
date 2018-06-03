@@ -11,16 +11,11 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def project(request, project_id):
-    try:
-        project = Project.objects.get(pk=project_id)
-    except Project.DoesNotExist:
-        raise Http404("Project does not exist.")
+def project(request):
     context = {
-        "project": project
+        "projects": Project.objects.all()
     }
-    template = loader.get_template('app/project.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, "app/projects.html", context)
 
 
 def gentella_html(request):

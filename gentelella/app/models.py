@@ -56,9 +56,9 @@ class Project(models.Model):
         ('CEO', 'CEO'))
 
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=30)
     code = models.CharField(max_length=6)
-    location = models.CharField(max_length=30)
+    location = models.CharField(max_length=20)
     funding_cat = models.CharField(max_length=30)
     portfolio_owner = models.CharField(max_length=3, choices=POTYPES)
     leader = models.CharField(max_length=50, blank=True)
@@ -80,4 +80,4 @@ class Project(models.Model):
     comments = models.TextField(blank=True)
 
     def __str__(self):
-        return self.code
+        return self.title
