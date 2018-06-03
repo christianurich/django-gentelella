@@ -6,13 +6,13 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=200)
     code = models.CharField(max_length=6)
-    location = models.CharField()
-    funding_cat = models.CharField()
+    location = models.CharField(max_length=30)
+    funding_cat = models.CharField(max_length=30)
     portfolio_owner = models.CharField(max_length=3)
-    leader = models.CharField()
-    initiator = models.CharField()
-    certainty = models.IntegerField(max_value=100)
-    category = models.CharField()
+    leader = models.CharField(max_length=50)
+    initiator = models.CharField(max_length=50)
+    certainty = models.IntegerField()
+    category = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
     exp_specialists = models.FloatField()
@@ -21,13 +21,14 @@ class Project(models.Model):
     inflow_ext = models.FloatField()
     reqd_funds = models.FloatField()
     profit_margin = models.FloatField()
+    comments = models.TextField()
 
     def __str__(self):
         return self.code
 
 
 class Resource(models.Model):
-    skill = models.CharField()
+    skill = models.CharField(max_length=100)
     existing_fte_days = models.FloatField()
     fte_pax = models.FloatField()
     int_ext = models.CharField(max_length=3)  # internal or external
@@ -38,8 +39,8 @@ class Resource(models.Model):
 
 
 class User(models.Model):
-    first_name = models.CharField()
-    last_name = models.CharField()
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.last_name
