@@ -1,15 +1,25 @@
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
-from .models import Project
-from .models import User
-from .models import Resource
+from .models import Project, Employee, Resource
 
 
 def index(request):
     context = {}
     template = loader.get_template('app/index.html')
+    return HttpResponse(template.render(context, request))
+
+
+def project(request, project_id):
+    try:
+        project = Project.objects.get(pk=project_id)
+    except Project.DoesNotExist:
+        raise Http404("Project does not exist.")
+    context = {
+        "project": project
+    }
+    template = loader.get_template('app/project.html')
     return HttpResponse(template.render(context, request))
 
 

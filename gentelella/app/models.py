@@ -3,7 +3,7 @@ from django.db import models
 
 
 # Create your models here.
-class User(models.Model):
+class Employee(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.CharField(max_length=40)
@@ -18,28 +18,28 @@ class Project(models.Model):
     location = models.CharField(max_length=30)
     funding_cat = models.CharField(max_length=30)
     portfolio_owner = models.CharField(max_length=3)
-    leader = models.CharField(max_length=50)
-    initiator = models.ForeignKey(User)
+    leader = models.CharField(max_length=50, blank=True)
+    initiator = models.ManyToManyField(Employee, blank=True, related_name="users")
     certainty = models.IntegerField()
     category = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
-    exp_specialists = models.FloatField()
-    exp_other = models.FloatField()
-    inflow_crc = models.FloatField()
-    inflow_ext = models.FloatField()
-    reqd_funds = models.FloatField()
-    profit_margin = models.FloatField()
-    comments = models.TextField()
+    exp_specialists = models.FloatField(null=True)
+    exp_other = models.FloatField(null=True)
+    inflow_crc = models.FloatField(null=True)
+    inflow_ext = models.FloatField(null=True)
+    reqd_funds = models.FloatField(null=True)
+    profit_margin = models.FloatField(null=True)
+    comments = models.TextField(blank=True)
 
     def __str__(self):
         return self.code
 
 
 class Resource(models.Model):
-    skill = models.CharField(max_length=100)
-    existing_fte_days = models.FloatField()
-    fte_pax = models.FloatField()
+    skill = models.ManyToManyField(Project, blank=True, related_name="skills")
+    existing_fte_days = models.FloatField(null=True)
+    fte_pax = models.FloatField(null=True)
     int_ext = models.CharField(max_length=3)  # internal or external
     daily_cost = models.FloatField()
 
